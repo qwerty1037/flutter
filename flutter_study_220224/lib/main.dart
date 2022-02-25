@@ -122,7 +122,7 @@ class _SearchBarState extends State<SearchBar> {
           initialSearch: true,
           startsWith: false,
           endsWith: false,
-          fuzzy: false,
+          fuzzy: true,
           ignoreSpace: true,
           ignoreCase: true,
         )
