@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class SearchBar extends StatefulWidget {
   const SearchBar({Key key}) : super(key: key);
 
@@ -28,15 +29,15 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   
-  final TextEditingController _filter = new TextEditingController(); // 필터 역할을 한다, but 정확한 쓰임새를 모르겠다..
+  final TextEditingController _filter = new TextEditingController(); // TextEditingController
 
-  String _searchText = ""; //얘도 아직 쓰임새를 모르겠다
+  String _searchText = ""; // 검색창에 user가 타이핑한 문자열
 
-  List names = []; // dataclass.name 리스트
+  List names = []; // 전체 리스트
 
-  List filteredNames = []; // searchtext에 의해 필터링된 name
+  List filteredNames = []; // searchtext에 의해 필터링된 리스트
 
-  Icon _searchIcon = Icon(Icons.search); //뭔지 모르겠다.. 검색 아이콘의 단축어?
+  Icon _searchIcon = Icon(Icons.search); // 검색 아이콘
 
   Widget _appBarTitle = Text('Search Example'); // Search Example의 단축어?
 
