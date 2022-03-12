@@ -28,8 +28,8 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  
-  final TextEditingController _filter = new TextEditingController(); // TextEditingController
+  final TextEditingController _filter =
+      new TextEditingController(); // TextEditingController
 
   String _searchText = ""; // 검색창에 user가 타이핑한 문자열
 
@@ -41,9 +41,8 @@ class _SearchBarState extends State<SearchBar> {
 
   Widget _appBarTitle = Text('Search Example'); // Search Example의 단축어?
 
-
   //리스트를 변수로 가져오는 함수
-  void _getNames () async {
+  void _getNames() async {
     // TODO: dataclass에서 list를 뽑는 코드가 추가되어야 함
     setState(() {
       names = datalist;
@@ -53,17 +52,16 @@ class _SearchBarState extends State<SearchBar> {
 
   void _searchPressed() {
     setState(() {
-      if(_searchIcon.icon == Icons.search) { //off->on
+      if (_searchIcon.icon == Icons.search) {
+        //off->on
         _searchIcon = Icon(Icons.close);
         _appBarTitle = TextField(
           controller: _filter,
           decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: 'Search...'
-          ),
+              prefixIcon: Icon(Icons.search), hintText: 'Search...'),
         );
-      }
-      else { //on->off
+      } else {
+        //on->off
         _searchIcon = Icon(Icons.search);
         _appBarTitle = Text('Search Example');
         filteredNames = names;
@@ -72,15 +70,14 @@ class _SearchBarState extends State<SearchBar> {
     });
   }
 
-  _SearchBarState(){
+  _SearchBarState() {
     _filter.addListener(() {
       if (_filter.text.isEmpty) {
         setState(() {
           _searchText = "";
           filteredNames = names;
         });
-      }
-      else {
+      } else {
         setState(() {
           _searchText = _filter.text;
         });
@@ -89,7 +86,7 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   @override
-  void initState(){
+  void initState() {
     _getNames();
     super.initState();
   }
@@ -114,29 +111,30 @@ class _SearchBarState extends State<SearchBar> {
     );
   }
 
-  Widget _buildList () {
-    if (!(_searchText.isEmpty)) { //무언가를 입력했다면
+  Widget _buildList() {
+    if (!(_searchText.isEmpty)) {
+      //무언가를 입력했다면
       List tempList = [];
       RegExp regExp = getRegExp(
-        _searchText,
-        RegExpOptions(
-          initialSearch: true,
-          startsWith: false,
-          endsWith: false,
-          fuzzy: true,
-          ignoreSpace: true,
-          ignoreCase: true,
-        )
-      );
-      for (int i=0;i<filteredNames.length;i++) {
-        if(regExp.hasMatch(filteredNames[i])) { //입력한 문자와 일치하는 검색 결과 필터
-          tempList.add(filteredNames[i]);
+          _searchText,
+          RegExpOptions(
+            initialSearch: true,
+            startsWith: false,
+            endsWith: false,
+            fuzzy: true,
+            ignoreSpace: true,
+            ignoreCase: true,
+          ));
+      for (int i = 0; i < names.length; i++) {
+        if (regExp.hasMatch(names[i])) {
+          //입력한 문자와 일치하는 검색 결과 필터
+          tempList.add(names[i]);
         }
       }
       filteredNames = tempList;
     }
     return ListView.builder(
-      itemCount: names == null? 0 : filteredNames.length,
+      itemCount: names == null ? 0 : filteredNames.length,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
           title: Text(filteredNames[index]),
@@ -146,10 +144,4 @@ class _SearchBarState extends State<SearchBar> {
       },
     );
   }
-
-
 }
-
-
-
-
