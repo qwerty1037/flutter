@@ -34,7 +34,11 @@ class _LoadingState extends State<Loading> {
         'https://api.openweathermap.org/data/2.5/weather?lat=$latitude3&lon=$longitude3&appid=$apikey'));
     var weatherData = await network.getJsonData();
     print(weatherData);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => WeatherScreen(),))
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WeatherScreen(),
+        ));
   }
 
   // Future<void> fetchData() async {
